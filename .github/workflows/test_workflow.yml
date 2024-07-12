@@ -19,8 +19,8 @@ jobs:
       - name: Get retention days
         id: retention
         run: |
-          $branch = ${{ github.ref }}
-          if ($branch -eq "second-branch") {
+          $branch = "${{ github.ref }}""
+          if ($branch -eq "refs/heads/second-branch") {
             echo "days=365" >> $Env:GITHUB_OUTPUT
             echo "Artefact retention days set to 365"
           } else {
