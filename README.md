@@ -1,3 +1,1 @@
-# test-private-repo
-
-Hello World!
+Used mainly for testing GitHub workflows
