@@ -16,13 +16,21 @@ jobs:
         run: |
           New-Item -Path . -Name "testFile.txt" -ItemType "file" -Value "Hello, World!"
 
-      - name: Print branch name
+      - name: Get retention days
+        id: retention
         run: |
-          Write-Output ${{ github.ref }}
+          $branch = ${{ github.ref }}
+          if ($branch -eq "second-branch") {
+            echo "days=365" >> $Env:GITHUB_OUTPUT
+            echo "Artefact retention days set to 365"
+          } else {
+            echo "days=14" >> $Env:GITHUB_OUTPUT
+            echo "Artefact retention days set to 14"
+          }
 
       - name: Upload file
         uses: actions/upload-artifact@v4
         with:
           name: File
           path: testFile.txt
-          retention-days: 5
+          retention-days: ${{ steps.retention.outputs.days }}
