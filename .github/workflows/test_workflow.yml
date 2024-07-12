@@ -18,9 +18,7 @@ jobs:
 
       - name: Print branch name
         run: |
-          branch_name=${{ github.ref }}
-          branch_name=${branch_name#refs/heads/}
-          echo "Branch name is $branch_name"
+          Write-Output ${GITHUB_REF}
 
       - name: Upload file
         uses: actions/upload-artifact@v4
