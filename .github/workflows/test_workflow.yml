@@ -18,7 +18,7 @@ jobs:
 
       - name: Print branch name
         run: |
-          Write-Output ${GITHUB_REF}
+          Write-Output ${{ github.ref }}
 
       - name: Upload file
         uses: actions/upload-artifact@v4
