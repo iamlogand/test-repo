@@ -1,0 +1,23 @@
+name: TestWorkflow
+
+on:
+  pull_request:
+
+jobs:
+  Test:
+    runs-on: windows-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create file
+        shell: PowerShell
+        run: |
+          New-Item -Path . -Name "testFile.txt" -ItemType "file" -Value "Hello, World!"
+
+      - name: Upload file
+        uses: actions/upload-artifact@v4
+        with:
+          name: File
+          path: testFile.txt
+          retention-days: 5
