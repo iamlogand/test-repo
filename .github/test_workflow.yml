@@ -1,7 +1,7 @@
 name: TestWorkflow
 
 on:
-  pull_request:
+  pull_request: 
 
 jobs:
   Test:
